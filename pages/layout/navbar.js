@@ -7,7 +7,6 @@ export default function Navbar({href }) {
   const router = useRouter()
 
   const clickNavBar = () => {
-    console.log("phuc");
     return (
       <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
         <path
@@ -45,17 +44,7 @@ export default function Navbar({href }) {
       </div>
 
       <nav class="px-2 pt-2 pb-4 sm:flex sm:p-0">
-        <Link href="/blog">
-
-  
-      <a
-       onClick={() => router.push('/blog/blog')}
-          href="#"
-          class="block px-2 py-1 font-semibold rounded hover:bg-orange-300"
-        >
-          Bài viết
-        </a>
-        </Link>
+   
         <a
           href="#"
           class="block px-2 py-1 font-semibold rounded hover:bg-orange-300"
