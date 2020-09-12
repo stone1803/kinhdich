@@ -26,7 +26,7 @@ export default function Navbar({href }) {
     <header class=" sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3">
       <div class="flex items-center justify-between px-4 py-3 sm:p-0">
         <div>
-          <img onClick={() => router.back()}
+          <img onClick={() => router.push("/")}
             class="h-8"
             src="https://firebasestorage.googleapis.com/v0/b/quedichhoamai.appspot.com/o/thuancan.jpg?alt=media&token=d17727a8-5cc2-497a-ba1a-dc220be13754"
             alt="Que Dich Hoa Mai"

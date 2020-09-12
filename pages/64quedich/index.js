@@ -3,44 +3,66 @@ import Layout from "../layout/mylayout";
 import Head from "next/head";
 import Link from "next/link";
 import firebase from "firebase";
-const firebaseConfig = {
-  apiKey: "AIzaSyCK23GvOrH3SMNEureUlKQasMz8BY-G2E8",
-  authDomain: "quedichhoamai.firebaseapp.com",
-  databaseURL: "https://quedichhoamai.firebaseio.com",
-  projectId: "quedichhoamai",
-  storageBucket: "quedichhoamai.appspot.com",
-  messagingSenderId: "88913793943",
-  appId: "1:88913793943:web:46f043cd5b104430a92ad2",
-  measurementId: "G-7R6EHMTQNZ",
-};
-try {
-  firebase.initializeApp(firebaseConfig);
-} catch (err) {
-  if (!/already exists/.test(err.message)) {
-    console.error("Firebase initialization error", err.stack);
-  }
-}
-const fire = firebase;
+
+
 export default function IndexQueDich() {
+  const firebaseConfig = {
+    apiKey: "AIzaSyCK23GvOrH3SMNEureUlKQasMz8BY-G2E8",
+    authDomain: "quedichhoamai.firebaseapp.com",
+    databaseURL: "https://quedichhoamai.firebaseio.com",
+    projectId: "quedichhoamai",
+    storageBucket: "quedichhoamai.appspot.com",
+    messagingSenderId: "88913793943",
+    appId: "1:88913793943:web:46f043cd5b104430a92ad2",
+    measurementId: "G-7R6EHMTQNZ",
+  };
+  try {
+    firebase.initializeApp(firebaseConfig);
+  } catch (err) {
+    if (!/already exists/.test(err.message)) {
+      console.error("Firebase initialization error", err.stack);
+    }
+  }
+  const fire = firebase;
   const [blogs, setBlogs] = useState([]);
+
+
+  const [searchText, setSearchText] = useState("");
+  const handleChange = (value) => {
+    
+    setSearchText(value);
+    filterData(value);
+  };
+ 
+
   useEffect(() => {
     fire
-      .firestore()
-      .collection("que64")
-      .onSnapshot((snap) => {
-        const blogs = snap.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setBlogs(blogs);
-      });
+    .firestore()
+    .collection("que64")
+    .onSnapshot((snap) => {
+      const blogs = snap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setBlogs(blogs);
+    });
   }, []);
- if(!blogs){
-   return <div>
-     LOADING
-   </div>
- }
-  console.log(blogs);
+  const excludeColumns = ["so", "tenQue"];
+  const filterData = (value) => {
+    const lowercasedValue = value.toLowerCase().trim();
+    if (lowercasedValue === null) setData(blogs);
+    else {
+      const filteredData = blogs.filter((item) => {
+        return Object.keys(item).some((key) =>
+          excludeColumns.includes(key)
+            ? false
+            : item[key].toString().toLowerCase().includes(lowercasedValue)
+        );
+      });
+      setBlogs(filteredData);
+    }
+  };
+ console.log(blogs)
   return (
     <Layout>
       <Head>
@@ -60,6 +82,13 @@ export default function IndexQueDich() {
             </p>
           </div>
           <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+          <input 
+            onChange={(e) => handleChange(e.target.value)}
+            value={searchText}
+          
+          
+          class="bg-white focus:outline-none focus:shadow-outline border border-orange-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="text" placeholder="Tìm nhanh quẻ"/>
+
             {blogs &&
               blogs.map((blog, index) => {
                 return (
