@@ -41,7 +41,7 @@ const Blog = (props) => {
         <a>Back</a>
       </Link> */}
       <div class="  container mx-auto">
-        <div className="text-justif pl-2 bg-orange-200 rounded-lg mt-2 py-2">
+      <div className="container pl-5 bg-orange-200 rounded-lg mt-2 py-5">
           {ReactHtmlParser(props.noidung)}
         </div>
         <button
