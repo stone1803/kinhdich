@@ -3,7 +3,7 @@ import Layout from "../layout/mylayout";
 import Head from "next/head";
 import Link from "next/link";
 import firebase from "firebase";
-
+import LazyLoad from "react-lazyload";
 
 export default function IndexQueDich() {
   const firebaseConfig = {
@@ -26,28 +26,28 @@ export default function IndexQueDich() {
   const fire = firebase;
   const [blogs, setBlogs] = useState([]);
 
-
   const [searchText, setSearchText] = useState("");
   const handleChange = (value) => {
-    
     setSearchText(value);
     filterData(value);
   };
- 
 
   useEffect(() => {
-    fire
-    .firestore()
-    .collection("que64")
-    .onSnapshot((snap) => {
-      const blogs = snap.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setBlogs(blogs);
-    });
+    async function fetchMyAPI() {
+      let response = await fire
+        .firestore()
+        .collection("que64")
+        .onSnapshot((snap) => {
+          const blogs = snap.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setBlogs(blogs);
+        });
+    }
+    fetchMyAPI();
   }, []);
-  const excludeColumns = ["so", "tenQue"];
+  const excludeColumns = ["Des", "tenQue"];
   const filterData = (value) => {
     const lowercasedValue = value.toLowerCase().trim();
     if (lowercasedValue === null) setData(blogs);
@@ -62,7 +62,9 @@ export default function IndexQueDich() {
       setBlogs(filteredData);
     }
   };
- console.log(blogs)
+  if (!blogs) {
+    return <div>LOADNGDING</div>;
+  }
   return (
     <Layout>
       <Head>
@@ -82,12 +84,13 @@ export default function IndexQueDich() {
             </p>
           </div>
           <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
-          <input 
-            onChange={(e) => handleChange(e.target.value)}
-            value={searchText}
-          
-          
-          class="bg-white focus:outline-none focus:shadow-outline border border-orange-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="text" placeholder="Tìm nhanh quẻ"/>
+            <input
+              onChange={(e) => handleChange(e.target.value)}
+              value={searchText}
+              class="bg-white focus:outline-none focus:shadow-outline border border-orange-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+              type="text"
+              placeholder="Tìm nhanh quẻ"
+            />
 
             {blogs &&
               blogs.map((blog, index) => {
@@ -106,7 +109,6 @@ export default function IndexQueDich() {
                           <div class="h-2 w-2 rounded-full m-1 bg-purple-500 "></div>
                         </div>
                         <div class="category-title flex-1 text-sm">
-                          {" "}
                           {blog.so}
                         </div>
                       </div>

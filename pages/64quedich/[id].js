@@ -25,6 +25,7 @@ try {
 const fire = firebase;
 const Blog = (props) => {
   const router = useRouter();
+  const { asPath, route, query } = useRouter()
 
   return (
     <Layout>
@@ -40,9 +41,8 @@ const Blog = (props) => {
         <a>Back</a>
       </Link> */}
       <div class="  container mx-auto">
-        <div className="text-justif pl-2 bg-orange-200 rounded-lg">
-        {ReactHtmlParser(props.noidung)}
-
+        <div className="text-justif pl-2 bg-orange-200 rounded-lg mt-2 py-2">
+          {ReactHtmlParser(props.noidung)}
         </div>
         <button
           onClick={() => router.push("/64quedich/")}
