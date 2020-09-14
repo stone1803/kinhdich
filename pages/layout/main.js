@@ -76,7 +76,7 @@ export default function Main() {
                   Một số bài viết đặt sắc sưu tầm về dịch hay những bài được
                   nghiệm lý thực tế nhóm. Và những bài viết huyền học nói riêng
                   <button
-                    onClick={() => router.push("/64quedich/")}
+                    onClick={() => router.push("/baiviet/")}
                     type="button"
                     class="block px-2 py-1 text-gray-500 rounded hover:bg-orange-300 focus:text-white focus:outline-none"
                   >
@@ -107,7 +107,7 @@ export default function Main() {
                   Tư vấn luận đoán sim số điện thoại , biển số xe . Đặt biệt tư
                   vấn hướng nghiệp như xem Bát Tử , Tử Vi , Và Dịch
                   <button
-                    onClick={() => router.push("/64quedich/")}
+                    onClick={() => router.push("/baiviet/")}
                     type="button"
                     class="block px-2 py-1 text-gray-500 rounded hover:bg-orange-300 focus:text-white focus:outline-none"
                   >
