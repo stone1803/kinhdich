@@ -25,13 +25,22 @@ try {
 const fire = firebase;
 const Blog = (props) => {
   const router = useRouter();
-  const { asPath, route, query } = useRouter()
+  const { asPath, route, query } = useRouter();
 
   return (
     <Layout>
       <Head>
         <title>{props.title}</title>
-        <meta name="description" content={props.content} />
+        <meta name="description" content={props.des} />
+        <meta
+          property="og:title"
+          content="Đào tạo SEO IDOL – Khóa học SEO &#91;All IN ONE&#93;"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:description"
+          content={props.des}        />
+        <meta property="og:image" content={props.HinhAnh} />
       </Head>
       {/* <h2>{props.title}</h2>
       <p>
@@ -63,7 +72,7 @@ export const getServerSideProps = async ({ query }) => {
     .doc(query.id)
     .get()
     .then((result) => {
-      console.log(result.data)
+      console.log(result.data);
       content["tenBaiViet"] = result.data().tenBaiViet;
       content["tomTat"] = result.data().tomTat;
       content["noiDung"] = result.data().noiDung;
