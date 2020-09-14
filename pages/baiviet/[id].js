@@ -34,7 +34,7 @@ const Blog = (props) => {
         <meta name="description" content={props.des} />
         <meta
           property="og:title"
-          content="Đào tạo SEO IDOL – Khóa học SEO &#91;All IN ONE&#93;"
+          content={props.title}
         />
         <meta property="og:type" content="website" />
         <meta
