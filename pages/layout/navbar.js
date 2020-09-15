@@ -46,6 +46,8 @@ export default function Navbar({href }) {
       <nav class="px-2 pt-2 pb-4 sm:flex sm:p-0">
    
         <a
+                    onClick={() => router.push('/layquedich/')}
+
           href="#"
           class="block px-2 py-1 font-semibold rounded hover:bg-orange-300"
         >
