@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../layout/mylayout";
-import RaQue from "./raque";
 export default function IndexLayQueDich() {
   var ABOUT =
     "\u00C2m l\u1ECBch Vi\u1EC7t Nam - Version 0.8" +
@@ -1242,23 +1241,23 @@ export default function IndexLayQueDich() {
     setInfoQue(frmdetails);
     console.log(getYearCanChi(parseInt(nam)));
     console.log(getLunarDate(ngay, thang, nam));
-    console.log(getMonth(thang,nam))
+    console.log(getMonth(thang, nam));
     var customDay = getLunarDate(
       parseInt(ngay),
       parseInt(thang),
       today.getFullYear()
     );
-    console.log(thangphuc(customDay))
-    console.log(ngayphuc(customDay))
+    console.log(thangphuc(customDay));
+    console.log(ngayphuc(customDay));
     const amlich = {
       nam: parseInt(nam),
       thang: thangphuc(customDay),
       ngay: ngayphuc(customDay),
       gio: gio,
     };
-    SetAmlich(amlich)
+    SetAmlich(amlich);
   };
-const [amlich,SetAmlich]=useState({})
+  const [amlich, SetAmlich] = useState({});
   return (
     <Layout className="container">
       <div className="rounded bg-orange-300  h-500 w-500 ">
@@ -1359,11 +1358,13 @@ const [amlich,SetAmlich]=useState({})
         </div>
       </div>
       <div className="rounded sm:m-4 mx-4 mb-10 mt-4 bg-orange-300">
-        {!load ? (
-          <p>VUI LÒNG CHỌN NGÀY THÁNG NĂM DƯƠNG LỊCH VÀ GIỜ MUỐN RA QUẺ</p>
-        ) : (
-          <RaQue data={amlich} />
-        )}
+        {load?
+        <div>
+          <p className="text-center">ĐANG CẬP NHẬT</p>
+        </div>
+        
+        
+        :<p className="text-center">VUI LÒNG CHỌN NGÀY DƯƠNG LỊCH ĐỂ LUẬN ĐOÁN QUẺ</p>}
       </div>
     </Layout>
   );
