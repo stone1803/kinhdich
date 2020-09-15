@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../layout/mylayout";
+import Raque from "./raque";
 export default function IndexLayQueDich() {
   var ABOUT =
     "\u00C2m l\u1ECBch Vi\u1EC7t Nam - Version 0.8" +
@@ -804,7 +805,7 @@ export default function IndexLayQueDich() {
       today.getMonth() + 1,
       today.getFullYear()
     );
-    s += " nhuận " + getYearCanChi(currentLunarDate.year);
+    s += " năm " + getYearCanChi(currentLunarDate.year);
     return s;
   }
 
@@ -1247,16 +1248,63 @@ export default function IndexLayQueDich() {
       parseInt(thang),
       today.getFullYear()
     );
-    console.log(thangphuc(customDay));
-    console.log(ngayphuc(customDay));
+    let soNam = null
+
+    switch (getYearChi(parseInt(nam))) {
+      
+      case "Tý":
+        soNam = 1
+        break;
+      case "Sửu":
+        soNam = 2
+        break;
+      case "Dần":
+        soNam = 3
+        break;
+      case "Mão":
+        soNam = 4
+        break;
+      case "Thìn":
+        soNam = 5
+
+        break;
+      case "Tỵ":
+        soNam = 6
+
+        break;
+      case "Ngọ":
+        soNam = 7
+        break;
+      case "Mùi":
+        soNam = 8
+        break;
+      case "Thân":
+        soNam = 9
+        break;
+      case "Dậu":
+        soNam = 10
+
+        break;
+      case "Tuất":
+        soNam = 11
+        break;
+        case "Hợi":
+          soNam = 12
+          break;
+      default:
+        break;
+    }
     const amlich = {
-      nam: parseInt(nam),
+      nam: soNam,
       thang: thangphuc(customDay),
       ngay: ngayphuc(customDay),
-      gio: gio,
+      gio: parseInt(gio),
     };
     SetAmlich(amlich);
   };
+  function getYearChi(year) {
+    return CHI[(year + 8) % 12];
+  }
   const [amlich, SetAmlich] = useState({});
   return (
     <Layout className="container">
@@ -1358,13 +1406,17 @@ export default function IndexLayQueDich() {
         </div>
       </div>
       <div className="rounded sm:m-4 mx-4 mb-10 mt-4 bg-orange-300">
-        {load?
-        <div>
-          <p className="text-center">ĐANG CẬP NHẬT</p>
-        </div>
-        
-        
-        :<p className="text-center">VUI LÒNG CHỌN NGÀY DƯƠNG LỊCH ĐỂ LUẬN ĐOÁN QUẺ</p>}
+        {load ? (
+          <div>
+            <p className="text-center">
+              <Raque data={amlich} />
+            </p>
+          </div>
+        ) : (
+          <p className="text-center">
+            VUI LÒNG CHỌN NGÀY DƯƠNG LỊCH ĐỂ LUẬN ĐOÁN QUẺ
+          </p>
+        )}
       </div>
     </Layout>
   );

@@ -28,7 +28,7 @@ export default function Navbar({href }) {
         <div>
           <img onClick={() => router.push("/")}
             class="h-8"
-            src="https://firebasestorage.googleapis.com/v0/b/quedichhoamai.appspot.com/o/thuancan.jpg?alt=media&token=d17727a8-5cc2-497a-ba1a-dc220be13754"
+            src="https://firebasestorage.googleapis.com/v0/b/quedichhoamai.appspot.com/o/thuancan.png?alt=media&token=7ee471fd-7132-4007-ba46-acfa805ed548"
             alt="Que Dich Hoa Mai"
           />
         </div>
