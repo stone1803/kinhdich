@@ -9,6 +9,11 @@ export default function RaQue({data}) {
                 <p>
                     {data.ngay}
                 </p>
+                <p>
+                    {data.thang}
+                </p>        <p>
+                    {data.nam}
+                </p>
             </div>
             </div>
     )

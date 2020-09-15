@@ -1224,7 +1224,7 @@ export default function IndexLayQueDich() {
     ));
   };
   const [infoQue, setInfoQue] = useState({});
-  const [load,IsLoad]=useState(false)
+  const [load, IsLoad] = useState(false);
   const [nam, setNam] = useState("");
   const [ngay, setNgay] = useState("");
   const [thang, setThang] = useState("");
@@ -1232,16 +1232,34 @@ export default function IndexLayQueDich() {
 
   const submitValue = () => {
     event.preventDefault();
-    IsLoad(true)
+    IsLoad(true);
     const frmdetails = {
-      nam: nam,
-      thang: thang,
-      ngay: ngay,
+      nam: parseInt(nam),
+      thang: parseInt(thang),
+      ngay: parseInt(ngay),
       gio: gio,
     };
+    console.log(frmdetails);
     setInfoQue(frmdetails);
+    console.log(getYearCanChi(parseInt(nam)));
+    console.log(getLunarDate(ngay, thang, nam));
+    console.log(getMonth(thang,nam))
+    var customDay = getLunarDate(
+      parseInt(ngay),
+      parseInt(thang),
+      today.getFullYear()
+    );
+    console.log(thangphuc(customDay))
+    console.log(ngayphuc(customDay))
+    const amlich = {
+      nam: parseInt(nam),
+      thang: thangphuc(customDay),
+      ngay: ngayphuc(customDay),
+      gio: gio,
+    };
+    SetAmlich(amlich)
   };
-
+const [amlich,SetAmlich]=useState({})
   return (
     <Layout className="container">
       <div className="rounded bg-orange-300  h-500 w-500 ">
@@ -1343,9 +1361,9 @@ export default function IndexLayQueDich() {
       </div>
       <div className="rounded sm:m-4 mx-4 mb-10 mt-4 bg-orange-300">
         {!load ? (
-          <p>VUI LÒNG CHỌN NGÀY THÁNG NĂM VÀ GIỜ MUỐN RA QUẺ</p>
+          <p>VUI LÒNG CHỌN NGÀY THÁNG NĂM DƯƠNG LỊCH VÀ GIỜ MUỐN RA QUẺ</p>
         ) : (
-          <RaQue data={infoQue} />
+          <RaQue data={amlich} />
         )}
       </div>
     </Layout>
