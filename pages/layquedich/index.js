@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../layout/mylayout";
-import { getTodayString } from "../layquedich/amlich";
 import RaQue from "./raque";
 export default function IndexLayQueDich() {
   var ABOUT =
@@ -567,7 +566,7 @@ export default function IndexLayQueDich() {
     solarNY = jdn(1, 1, yy);
     currentJD = solarNY + offsetOfTet;
     j = k >> 4;
-    for (i = 0; i < 12; i++) {
+    for (let i = 0; i < 12; i++) {
       regularMonths[12 - i - 1] = monthLengths[j & 0x1];
       j >>= 1;
     }
