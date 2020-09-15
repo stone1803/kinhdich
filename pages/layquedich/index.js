@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../layout/mylayout";
 import { getTodayString } from "../layquedich/amlich";
+import RaQue from "./raque";
 export default function IndexLayQueDich() {
   var ABOUT =
     "\u00C2m l\u1ECBch Vi\u1EC7t Nam - Version 0.8" +
@@ -1214,17 +1215,31 @@ export default function IndexLayQueDich() {
     console.log(ngay, thang, getYearCanChi(currentLunarDate.year));
   };
 
- let showNam = () => {
-  const year = new Date().getFullYear();
-  return (
-    Array.from( new Array(20), (v,i) =>
-      <option key={i} value={year+i}>{year+i}</option>
-    )
-  );
+  let showNam = () => {
+    const year = new Date().getFullYear();
+    return Array.from(new Array(20), (v, i) => (
+      <option key={i} value={year + i}>
+        {year + i}
+      </option>
+    ));
   };
-  let onHandleChange = (evt) => {
-    // Handle Change Here
-    console.log(evt.target.value);
+  const [infoQue, setInfoQue] = useState({});
+  const [load,IsLoad]=useState(false)
+  const [nam, setNam] = useState("");
+  const [ngay, setNgay] = useState("");
+  const [thang, setThang] = useState("");
+  const [gio, setGio] = useState("");
+
+  const submitValue = () => {
+    event.preventDefault();
+    IsLoad(true)
+    const frmdetails = {
+      nam: nam,
+      thang: thang,
+      ngay: ngay,
+      gio: gio,
+    };
+    setInfoQue(frmdetails);
   };
 
   return (
@@ -1235,10 +1250,10 @@ export default function IndexLayQueDich() {
       </div>
       <div class="flex mb-4 flex-wrap sm:m-4 mx-4 mb-10 mt-4 bg-orange-300 rounded">
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mb-3  p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
-          <select 
-                              onChange={onHandleChange}
-
-          class="select-style">
+          <select
+            onChange={(e) => setNgay(e.target.value)}
+            class="select-style"
+          >
             <option value="0">Ngày</option>
             <option value="1">01</option>
             <option value="2">02</option>
@@ -1274,10 +1289,10 @@ export default function IndexLayQueDich() {
           </select>
         </div>
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mb-3  p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
-          <select 
-                    onChange={onHandleChange}
-
-          class="select-style">
+          <select
+            onChange={(e) => setThang(e.target.value)}
+            class="select-style"
+          >
             <option value="0">Chọn Tháng</option>
             <option value="1">01</option>
             <option value="2">02</option>
@@ -1294,59 +1309,44 @@ export default function IndexLayQueDich() {
           </select>
         </div>
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mb-3  p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
-          <select 
-          onChange={onHandleChange}
-          class="select-style">
+          <select onChange={(e) => setNam(e.target.value)} class="select-style">
             <option value="0">Năm</option>
             {showNam()}
           </select>
         </div>
         <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mb-3  p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
-          <select class="select-style">
+          <select onChange={(e) => setGio(e.target.value)} class="select-style">
             <option value="0">Giờ</option>
-            <option value="1">01</option>
-            <option value="2">02</option>
-            <option value="3">03</option>
-            <option value="4">04</option>
-            <option value="5">05</option>
-            <option value="6">06</option>
-            <option value="7">07</option>
-            <option value="8">08</option>
-            <option value="9">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24">24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
-            <option value="31">31</option>
+            <option value="1"> Tý (23-1h)</option>
+            <option value="2"> Sửu (1-3h)</option>
+            <option value="3">Dần (3-5h)</option>
+            <option value="4">Mão (5-7h)</option>
+            <option value="5">Thìn (7-9h)</option>
+            <option value="6">Tỵ (9-11h)</option>
+            <option value="7">Ngọ (11-13h)</option>
+            <option value="8"> Mùi (13-15h)</option>
+            <option value="9">Thân (15-17h)</option>
+            <option value="10"> Dậu (17-19h)</option>
+            <option value="11">Tuất (19-21h)</option>
+            <option value="12"> Hợi (21-23h)</option>
           </select>
- 
         </div>
         <div className="rounded bg-orange-300 mx-auto my-auto px-auto py-auto">
-        <button
-          type="button"
-          class="text-center my-3  mt-2 bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded"
-        >
-          <span class="">Giải Đoán</span>
-        </button>
+          <button
+            onClick={submitValue}
+            type="button"
+            class="text-center my-3  mt-2 bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded"
+          >
+            <span class="">Giải Đoán</span>
+          </button>
         </div>
-
+      </div>
+      <div className="rounded sm:m-4 mx-4 mb-10 mt-4 bg-orange-300">
+        {!load ? (
+          <p>VUI LÒNG CHỌN NGÀY THÁNG NĂM VÀ GIỜ MUỐN RA QUẺ</p>
+        ) : (
+          <RaQue data={infoQue} />
+        )}
       </div>
     </Layout>
   );
