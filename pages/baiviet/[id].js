@@ -49,12 +49,12 @@ const Blog = (props) => {
       <Link href="/">
         <a>Back</a>
       </Link> */}
-      <div class="  container mx-auto">
+      <div class="mx-auto">
         <div className="container pl-5 bg-orange-200 rounded-lg mt-2 py-5">
           {ReactHtmlParser(props.noidung)}
         </div>
         <button
-          onClick={() => router.push("/64quedich/")}
+          onClick={() => router.push("/baiviet/")}
           type="button"
           class="mt-2 bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded"
         >
