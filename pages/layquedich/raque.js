@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
-
 export default function Raque({ data, props }) {
   const firebaseConfig = {
     apiKey: "AIzaSyCK23GvOrH3SMNEureUlKQasMz8BY-G2E8",
@@ -11,16 +10,15 @@ export default function Raque({ data, props }) {
     messagingSenderId: "88913793943",
     appId: "1:88913793943:web:46f043cd5b104430a92ad2",
     measurementId: "G-7R6EHMTQNZ",
-  };
-  try {
-    firebase.initializeApp(firebaseConfig);
-  } catch (err) {
-    if (!/already exists/.test(err.message)) {
-      console.error("Firebase initialization error", err.stack);
-    }
-  }
+};
+try {
+  firebase.initializeApp(firebaseConfig);
+} catch(err){
+  if (!/already exists/.test(err.message)) {
+    console.error('Firebase initialization error', err.stack)}
+}
+const fire = firebase;
   useEffect(() => {
- 
     tinhQue();
   }, []);
 
@@ -41,34 +39,33 @@ export default function Raque({ data, props }) {
     let phuc = `${quethuong}${queha}`;
     console.log(phuc);
     const content = {};
-    firebase
+    fire
       .firestore()
       .collection("raQue")
       .doc(phuc)
       .get()
       .then((result) => {
         console.log(result.data);
-        content["tenQue"] = result.data().tenQue;
-        content["tenQueHo"] = result.data().tenQueHo;
-        content["ynghia"] = result.data().ynghia;
+        if (!result.exists) {
+          alert("Không tìm ra quẻ");
+        } else {
+          content["tenQue"] = result.data().tenQue;
+          content["tenQueHo"] = result.data().tenQueHo;
+          content["ynghia"] = result.data().ynghia;
+        }
+
         setKetQua({
           tenque: content.tenQue,
           tenqueho: content.tenQueHo,
           ynghia: content.ynghia,
         });
-      }
-      );
-    
-
+      });
   };
-console.log(ketqua)
   return (
-    
     <div>
-    <p>{ketqua.tenque}</p>
-    <p>{ketqua.tenqueho}</p>
-  <p>{ketqua.ynghia}</p>
-
+      <p>{ketqua.tenque}</p>
+      <p>{ketqua.tenqueho}</p>
+      <p>{ketqua.ynghia}</p>
     </div>
   );
 }

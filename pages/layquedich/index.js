@@ -1229,8 +1229,8 @@ export default function IndexLayQueDich() {
   const [thang, setThang] = useState("");
   const [gio, setGio] = useState("");
 
-  const submitValue = () => {
-    event.preventDefault();
+  const submitValue = (e) => {
+    e.preventDefault();
     IsLoad(true);
     const frmdetails = {
       nam: parseInt(nam),
@@ -1301,6 +1301,9 @@ export default function IndexLayQueDich() {
       gio: parseInt(gio),
     };
     SetAmlich(amlich);
+    setTimeout(() => {
+      SetAmlich(null);
+    }, 2000)
   };
   function getYearChi(year) {
     return CHI[(year + 8) % 12];
