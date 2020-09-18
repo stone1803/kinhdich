@@ -51,20 +51,26 @@ const fire = firebase;
         } else {
           content["tenQue"] = result.data().tenQue;
           content["tenQueHo"] = result.data().tenQueHo;
+          content["hinhAnhQue"] = result.data().hinhAnhQue;
+
           content["ynghia"] = result.data().ynghia;
+          console.log(result.data().hinhAnhQue)
         }
 
         setKetQua({
           tenque: content.tenQue,
           tenqueho: content.tenQueHo,
           ynghia: content.ynghia,
+          hinhAnhQue : content.hinhAnhQue
         });
       });
   };
+console.log(ketqua)
   return (
     <div>
       <p>{ketqua.tenque}</p>
-      <p>{ketqua.tenqueho}</p>
+      <img src={ketqua.hinhAnhQue}/>
+
       <p>{ketqua.ynghia}</p>
     </div>
   );
