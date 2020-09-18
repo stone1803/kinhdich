@@ -1302,8 +1302,8 @@ export default function IndexLayQueDich() {
     };
     SetAmlich(amlich);
     setTimeout(() => {
-      SetAmlich(null);
-    }, 2000)
+      SetAmlich({});
+    }, 1000)
   };
   function getYearChi(year) {
     return CHI[(year + 8) % 12];

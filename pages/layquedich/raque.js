@@ -21,7 +21,7 @@ const fire = firebase;
   useEffect(() => {
     tinhQue();
   }, []);
-
+  const [dong,setQueDong]= useState("")
   const [tenQue, SetTenQue] = useState([]);
   const [quethuong, setquethuong] = useState(null);
   const [queha, setqueha] = useState(null);
@@ -34,6 +34,7 @@ const fire = firebase;
     let quethuong = ((data.nam + data.thang + data.ngay) % 8).toString();
     let queha = ((data.ngay + data.thang + 1 + data.gio) % 8).toString();
     let quedong = (data.ngay + data.thang + data.gio) % 6;
+    setQueDong(quedong)
     setqueha(queha);
     setquethuong(quethuong);
     let phuc = `${quethuong}${queha}`;
@@ -67,11 +68,41 @@ const fire = firebase;
   };
 console.log(ketqua)
   return (
-    <div>
-      <p>{ketqua.tenque}</p>
-      <img src={ketqua.hinhAnhQue}/>
+ 
+      <div class="flex flex-wrap container">
+  <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 mb-4 bg-gray-500">
+    <h1> QUẺ CHÍNH - Động Hào : {dong} </h1>
+  <p>{ketqua.tenque}</p>
+      <img 
+            class="px-4"
+
+      src={ketqua.hinhAnhQue}/>
 
       <p>{ketqua.ynghia}</p>
-    </div>
+  </div>
+  <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 mb-4 bg-gray-500">
+  <h1> QUẺ HỖ </h1>
+
+  <p>{ketqua.tenque}</p>
+      <img 
+            class="px-4"
+
+      src={ketqua.hinhAnhQue}/>
+
+      <p>{ketqua.ynghia}</p>
+
+  </div>
+  <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 mb-4 bg-gray-500">
+  <h1> QUẺ BIẾN </h1>
+
+  <p>{ketqua.tenque}</p>
+      < img 
+      class="px-4"
+      src={ketqua.hinhAnhQue}/>
+
+      <p>{ketqua.ynghia}</p>
+  </div>
+
+</div>
   );
 }

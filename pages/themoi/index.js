@@ -78,12 +78,13 @@ export default function index() {
             });
           });
         console.log("them moi thang cong");
+        alert("THEM MOI THANH CONG")
       }
     );
   };
 
   return (
-    <div className="container">
+    <div className="container bg-red-700	">
       THEM MOI
       <form onSubmit={handleFireBaseUpload}>
         <p>URL QUE</p>
@@ -106,7 +107,7 @@ export default function index() {
         />
         <p>HINH ANH QUE</p>
         <input type="file" onChange={handleImageAsFile} />
-        <button clas="btn btn-info">upload to firebase</button>
+        <button class="bg-blue-500">upload to firebase</button>
       </form>
       <button onClick={save}> SAVE </button>
     </div>
