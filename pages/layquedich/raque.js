@@ -57,7 +57,7 @@ export default function Raque({ data, props }) {
           content["hinhAnhQueHo"] = result.data().hinhAnhQueHo;
 
           content["ynghia"] = result.data().ynghia;
-          content["ynghiaHo"] = result.data().ynghiaHo;
+          content["ynghiaHo"] = result.data().ynghiaqueho;
 
           console.log(result.data().hinhAnhQue);
         }
