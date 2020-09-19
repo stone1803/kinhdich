@@ -1,36 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
 import "firebase/storage";
 import "firebase/firestore";
 
 export default function index() {
-  const firebaseConfig = {
-    apiKey: "AIzaSyCK23GvOrH3SMNEureUlKQasMz8BY-G2E8",
-    authDomain: "quedichhoamai.firebaseapp.com",
-    databaseURL: "https://quedichhoamai.firebaseio.com",
-    projectId: "quedichhoamai",
-    storageBucket: "quedichhoamai.appspot.com",
-    messagingSenderId: "88913793943",
-    appId: "1:88913793943:web:46f043cd5b104430a92ad2",
-    measurementId: "G-7R6EHMTQNZ",
-  };
-  try {
-    firebase.initializeApp(firebaseConfig);
-  } catch (err) {
-    if (!/already exists/.test(err.message)) {
-      console.error("Firebase initialization error", err.stack);
-    }
-  }
-  const storage = firebase.storage();
-  const fire = firebase.firestore();
+
   const allInputs = { imgUrl: "" };
   const [imageAsFile, setImageAsFile] = useState("");
   const [imageAsUrl, setImageAsUrl] = useState(allInputs);
   const [tenque, setTenQue] = useState("");
   const [ynghia, setYnghia] = useState("");
   const [urlque, setUrlQue] = useState("");
-
-  console.log(imageAsFile);
+  const [data, setData] = useState({});
+  useEffect(() => {
+    const firebaseConfig = {
+      apiKey: "AIzaSyCK23GvOrH3SMNEureUlKQasMz8BY-G2E8",
+      authDomain: "quedichhoamai.firebaseapp.com",
+      databaseURL: "https://quedichhoamai.firebaseio.com",
+      projectId: "quedichhoamai",
+      storageBucket: "quedichhoamai.appspot.com",
+      messagingSenderId: "88913793943",
+      appId: "1:88913793943:web:46f043cd5b104430a92ad2",
+      measurementId: "G-7R6EHMTQNZ",
+    };
+    try {
+      firebase.initializeApp(firebaseConfig);
+    } catch (err) {
+      if (!/already exists/.test(err.message)) {
+        console.error("Firebase initialization error", err.stack);
+      }
+    }
+    const fire = firebase.firestore();
+    async function fetchMyAPI() {
+      let response = await firebase.firestore().collection("raQue").onSnapshot((snap) => {
+        const blogs = snap.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setData(blogs);
+      });
+    }
+    fetchMyAPI();
+    console.log(data)
+  }, []);
   const handleImageAsFile = (e) => {
     const image = e.target.files[0];
     setImageAsFile((imageFile) => image);
@@ -39,6 +51,8 @@ export default function index() {
     e.preventDefault();
   };
   const handleFireBaseUpload = (e) => {
+    const storage = firebase.storage();
+
     e.preventDefault();
     console.log("start of upload");
     // async magic goes here...
@@ -78,15 +92,41 @@ export default function index() {
             });
           });
         console.log("them moi thang cong");
-        alert("THEM MOI THANH CONG")
+        alert("THEM MOI THANH CONG");
       }
     );
   };
 
+  if (!data) {
+    return <div>LOADING</div>;
+  }
+  let show = ()=>{
+    async function fetchMyAPI() {
+      let response = await fire.collection("raQue").onSnapshot((snap) => {
+        const blogs = snap.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setData(blogs);
+      });
+    }
+    fetchMyAPI();
+    console.log(data)
+
+  }
+  let showdata =()=>{
+    return data.map((data,index)=>{
+       (
+        <div>
+          {data.tenQue}
+        </div>
+      )
+    })
+  }
   return (
-    <div className="container bg-red-700	">
+    <div className="bg-red-700  mx-auto px-4">
       THEM MOI
-      <form onSubmit={handleFireBaseUpload}>
+      <form className="bg-red-700" onSubmit={handleFireBaseUpload}>
         <p>URL QUE</p>
         <input
           type="text"
@@ -106,10 +146,21 @@ export default function index() {
           onChange={({ target }) => setYnghia(target.value)}
         />
         <p>HINH ANH QUE</p>
-        <input type="file" onChange={handleImageAsFile} />
-        <button class="bg-blue-500">upload to firebase</button>
+        <input
+          className="btn btn-blue"
+          type="file"
+          onChange={handleImageAsFile}
+        />
+        <button className="bg-blue-500 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded">
+          ADD NEW
+        </button>
       </form>
-      <button onClick={save}> SAVE </button>
+      <button 
+      onClick={show}> GET </button>
+      <div className="h-full w-full">
+      <button > SHOW </button>
+        {showdata}
+      </div>
     </div>
   );
 }

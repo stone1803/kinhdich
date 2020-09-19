@@ -83,13 +83,13 @@ console.log(ketqua)
   <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 mb-4 bg-gray-500">
   <h1> QUẺ HỖ </h1>
 
-  <p>{ketqua.tenque}</p>
+  <p>{ketqua.tenQueHo}</p>
       <img 
             class="px-4"
 
-      src={ketqua.hinhAnhQue}/>
+      src={ketqua.hinhAnhQueHo}/>
 
-      <p>{ketqua.ynghia}</p>
+      <p>{ketqua.ynghiaHo}</p>
 
   </div>
   <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2 mb-4 bg-gray-500">
@@ -106,3 +106,23 @@ console.log(ketqua)
 </div>
   );
 }
+export const getServerSideProps = async ({ query }) => {
+  const content = {};
+  await fire
+    .firestore()
+    .collection("que64")
+    .doc(query.id)
+    .get()
+    .then((result) => {
+      content["title"] = result.data().tenQue;
+      content["des"] = result.data().Des;
+      content["content"] = result.data().content;
+    });
+  return {
+    props: {
+      title: content.title,
+      des: content.des,
+      noidung: content.content,
+    },
+  };
+};
