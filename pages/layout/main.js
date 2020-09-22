@@ -99,13 +99,12 @@ export default function Main() {
                   <div class="category-badge flex-1  h-4 w-4 m rounded-full m-1 bg-green-100">
                     <div class="h-2 w-2 rounded-full m-1 bg-green-500 "></div>
                   </div>
-                  <div class="category-title flex text-sm"> Dịch vụ </div>
+                  <div class="category-title flex text-sm"> Tài Liệu</div>
                 </div>
-                <div class="title-post font-medium">Luận đoán trả phí</div>
+                <div class="title-post font-medium">Những tài liệu hay về Huyền học</div>
 
                 <div class="summary-post text-base text-justify">
-                  Tư vấn luận đoán sim số điện thoại , biển số xe . Đặt biệt tư
-                  vấn hướng nghiệp như xem Bát Tử , Tử Vi , Và Dịch
+                  Cung cấp những tài liệu hay về huyền học cho các bạn có sở thích và muốn tìm hiểu về môn này như Tử Vi Kinh Dịch Bát Tự Phong Thủy v.v.
                   <button
                     onClick={() => router.push("/baiviet/")}
                     type="button"
