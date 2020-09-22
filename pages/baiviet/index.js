@@ -88,7 +88,7 @@ export default function IndexQueDich() {
                     <div class="bg-gray-300 h-56 w-full rounded-lg shadow-md bg-cover bg-center">
                       <img
                         className="rounded-lg shadow-md"
-                        src="https://picsum.photos/seed/picsum/400/300"
+                        src={data.HinhAnh}
                       />
                     </div>
 
