@@ -20,7 +20,7 @@ function Quiz(props) {
   }
 
   return (
-    <div key={props.questionId} className="quiz-story">
+    <div key={props.questionId} className="">
       <QuestionCount
         counter={props.counter}
         viewreults={props.viewreults}

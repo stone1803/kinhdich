@@ -54,6 +54,7 @@ button {
 /* Question Component */
 .question {
   text-align: center;
+  font-size: 40px;
 }
 
 /* AnswerOption Component */
@@ -144,15 +145,18 @@ button {
   line-height: 1.5;
 }
 .answerOption {
-  width: 150px;
-  float: left;
-  display: inherit;
+  width: 250px;
+  text-align: center;
   margin-right: 10px;
+  border-radius: 1;
+  padding: 20px;
 }
 .next-btn{
+  background-color: #54dc1c;
 
 }
 .Previous-btn{
+  background-color: #54dc1c;
 
 }
 .result-link {

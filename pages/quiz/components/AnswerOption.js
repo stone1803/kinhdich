@@ -2,9 +2,8 @@ import React from "react";
 
 function AnswerOption(props) {
   return (
-    <div className="answerOption h-200 bg-red-399">
+    <div className="answerOption flex flex-wrap">
       <button
-        id="horizontal-list"
         type="button"
         id={props.answerType}
         value={props.index}
