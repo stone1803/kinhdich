@@ -15,9 +15,9 @@ export default function Main() {
             </h1>
             <p class="lg:w-1/2 w-full leading-relaxed text-base">
               Tôi là Phúc mọi người gọi là Phúc Mập. Web App này lập ra vì tôi
-              muốn lưu lại những gì hay về dịch và tự nghiệm lý về nó. Nếu bạn
+              muốn lưu lại những gì hay về dịch và bát tự  và nghiệm lý về nó. Nếu bạn
               thấy có hữu ích cho bạn hay người thân hãy chia sẽ nó. Chúc bạn có
-              được nhiều thứ bạn mong muốn 🙏{" "}
+              được nhiều thứ bạn mong muốn 🙏.
             </p>
           </div>
           <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">

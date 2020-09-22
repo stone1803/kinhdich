@@ -34,11 +34,11 @@ export default function Navbar({href }) {
         </div>
         <div class="pl-2">
           <button
-            onClick={() => router.push('/64quedich/')}
+            onClick={() => router.push('/baitap')}
             type="button"
             class="block px-2 py-1 text-gray-500 rounded hover:bg-orange-300 focus:text-white focus:outline-none"
           >
-            64 Quẻ Dịch
+            Bài tập Huyền Học
           </button>
         </div>
       </div>
