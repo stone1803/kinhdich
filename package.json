@@ -50,7 +50,13 @@
     "react-simple-chatbot": "^0.6.1",
     "styled-components": "^5.2.0",
     "sweetalert2": "^9.7.1",
-    "tailwindcss": "^1.8.7"
+    "tailwindcss": "^1.8.7",
+    "next-redux-wrapper": "^6.0.2",
+    "redux": "^4.0.5",
+    "react-redux": "^7.1.3",
+    "react-redux-firebase": "^3.1.0",
+    "redux-firestore": "^0.11.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-dev-utils": "^23.5.1",

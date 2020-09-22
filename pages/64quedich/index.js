@@ -2,68 +2,56 @@ import React, { useState, useEffect } from "react";
 import Layout from "../layout/mylayout";
 import Head from "next/head";
 import Link from "next/link";
-import firebase from "firebase";
-import LazyLoad from "react-lazyload";
-
+import { useSelector } from "react-redux";
+import { useFirestoreConnect, firebaseConnect } from "react-redux-firebase";
+const todosQuery = {
+  collection: "que64",
+  orderBy: ["so"],
+  // orderBy: 'state' // string notation can also be used
+};
 export default function IndexQueDich() {
-  const firebaseConfig = {
-    apiKey: "AIzaSyCK23GvOrH3SMNEureUlKQasMz8BY-G2E8",
-    authDomain: "quedichhoamai.firebaseapp.com",
-    databaseURL: "https://quedichhoamai.firebaseio.com",
-    projectId: "quedichhoamai",
-    storageBucket: "quedichhoamai.appspot.com",
-    messagingSenderId: "88913793943",
-    appId: "1:88913793943:web:46f043cd5b104430a92ad2",
-    measurementId: "G-7R6EHMTQNZ",
-  };
-  try {
-    firebase.initializeApp(firebaseConfig);
-  } catch (err) {
-    if (!/already exists/.test(err.message)) {
-      console.error("Firebase initialization error", err.stack);
-    }
-  }
-  const fire = firebase;
-  const [blogs, setBlogs] = useState([]);
+  useFirestoreConnect(() => [todosQuery]); // sync tips collection from Firestore into redux
+  firebaseConnect("que64");
+  const que64 = useSelector((state) => state.firestoreReducer.ordered.que64);
+
+  const [data, setData] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+
   const handleChange = (value) => {
     setSearchText(value);
     filterData(value);
   };
-
   useEffect(() => {
-    async function fetchMyAPI() {
-      let response = await fire
-        .firestore()
-        .collection("que64")
-        .onSnapshot((snap) => {
-          const blogs = snap.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setBlogs(blogs);
-        });
-    }
-    fetchMyAPI();
+    const fetchPosts = async () => {
+      const res = await que64;
+      setData(res);
+    };
+
+    fetchPosts();
   }, []);
+
   const excludeColumns = ["Des", "tenQue"];
+
   const filterData = (value) => {
     const lowercasedValue = value.toLowerCase().trim();
-    if (lowercasedValue === null) setData(blogs);
+    if (lowercasedValue === null) setData(que64);
     else {
-      const filteredData = blogs.filter((item) => {
+      const filteredData = que64.filter((item) => {
         return Object.keys(item).some((key) =>
           excludeColumns.includes(key)
             ? false
-            : item[key].toString().toLowerCase().includes(lowercasedValue)
+            : item[key]
+                .toString()
+                .toLowerCase()
+                .includes(lowercasedValue)
         );
       });
-      setBlogs(filteredData);
+      setData(filteredData);
     }
   };
-  if (!blogs) {
-    return <div>LOADNGDING</div>;
+  if (que64 === undefined) {
+    return <p>Loading</p>;
   }
   return (
     <Layout>
@@ -92,8 +80,8 @@ export default function IndexQueDich() {
               placeholder="Tìm nhanh quẻ"
             />
 
-            {blogs &&
-              blogs.map((blog, index) => {
+            {data &&
+              data.map((data, index) => {
                 return (
                   <div class="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
                     <div class="bg-gray-300 h-56 w-full rounded-lg shadow-md bg-cover bg-center">
@@ -109,18 +97,18 @@ export default function IndexQueDich() {
                           <div class="h-2 w-2 rounded-full m-1 bg-purple-500 "></div>
                         </div>
                         <div class="category-title flex-1 text-sm">
-                          {blog.so}
+                          {data.so}
                         </div>
                       </div>
-                      <div class="title-post font-medium">{blog.tenQue}</div>
+                      <div class="title-post font-medium">{data.tenQue}</div>
 
                       <div class="summary-post text-base text-justify">
-                        {blog.Des.length > 150
-                          ? blog.Des.substr(0, 150) + "..."
-                          : blog.Des}
+                        {data.Des.length > 150
+                          ? data.Des.substr(0, 150) + "..."
+                          : data.Des}
                         <Link
                           href="/64quedich/[id]"
-                          as={"/64quedich/" + blog.id}
+                          as={"/64quedich/" + data.id}
                         >
                           <button
                             type="button"
