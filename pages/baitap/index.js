@@ -1,8 +1,7 @@
 import React from "react";
 import Layout from "../layout/mylayout";
-import BaiTap from "../quiz/quiz"
 import Head from "next/head";
-
+import MainQuiz from "./quiz"
 export default function index() {
   return (
     <Layout>
@@ -18,7 +17,7 @@ export default function index() {
         <div class="w-3/4 bg-organe-500 h-full">
           <div>
             <h1 className="text-center mt-3">Bài Tập Cơ bản</h1>
-          <BaiTap/>
+            <MainQuiz/>
           </div>
         </div>
      

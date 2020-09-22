@@ -25,7 +25,7 @@ try {
 }
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider, useSelector } from "react-redux";
-import rootReducer from "./components/config/store/reducers/rootReducer";
+import rootReducer from "./api/rootReducer";
 import thunk from "redux-thunk";
 import {
   createFirestoreInstance,
