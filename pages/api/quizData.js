@@ -7,7 +7,7 @@ export const quizData = [
     },
     {
       id: 1,
-      question: `Trong địa chia sau đây địa chi nào thuộc ngũ hành Kim?`,
+      question: `Trong địa chi sau đây địa chi nào thuộc ngũ hành Kim?`,
       options: [`Thân Dậu`, `Dần Mão`, `Tỵ Ngọ`,`Hợi Tý`],
       answer: `Thân Dậu`
     },

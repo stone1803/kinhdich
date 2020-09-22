@@ -77,7 +77,7 @@ class MainQuiz extends React.Component {
         <div className="result">
           <h3>Tổng điểm của bạn là {this.state.score} điểm </h3>
           <div>
-            Bạn đã trả lời đúng các câu hỏi sau
+            Câu trả lời đúng các câu hỏi là :
             <ul>
               {quizData.map((item, index) => (
                 <li className="ui floating message options" key={index}>
