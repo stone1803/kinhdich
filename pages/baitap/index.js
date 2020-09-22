@@ -13,7 +13,7 @@ export default function index() {
           content="Tổng hợp những bài tập từ cơ bản đến nâng cao do chính wep app biên soạn. gòm nhũng bài tập về Tử Vi Kinh Dịch Và Bát Tự"
         />
       </Head>
-      <div class="flex mb-4 container bg-red-500">
+      <div class="flex mb-4 container bg-red-200">
         <div class="w-3/4 bg-organe-500 h-full">
           <div>
             <h1 className="text-center mt-3">Bài Tập Cơ bản</h1>
