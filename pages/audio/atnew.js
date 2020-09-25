@@ -5,7 +5,7 @@ import "firebase/storage";
 import "firebase/firestore";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect, firebaseConnect } from "react-redux-firebase";
-export default function index() {
+export default function At() {
   useFirestoreConnect("mp3"); // sync tips collection from Firestore into redux
   firebaseConnect("mp3");
   const mp3 = useSelector((state) => state.firestoreReducer.ordered.mp3);
@@ -59,15 +59,15 @@ export default function index() {
     const fire = firebase.firestore();
     console.log(url);
     fire
-      .collection("mp3")
+      .collection("at")
       .doc(file)
       .set({
         stt: file,
         audio: url,
       });
-    useFirestoreConnect("mp3"); // sync tips collection from Firestore into redux
-    firebaseConnect("que64");
-    const mp3 = useSelector((state) => state.firestoreReducer.ordered.mp3);
+    useFirestoreConnect("at"); // sync tips collection from Firestore into redux
+    firebaseConnect("at");
+    const mp3 = useSelector((state) => state.firestoreReducer.ordered.at);
     console.log(mp3);
   };
   let showdata = () => {
@@ -95,7 +95,7 @@ export default function index() {
         onClick={showdata}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >
-        SHOW DATA 3
+        SHOW DATA 3- AT
       </button>
       <h1>---------------------------- </h1>
       <input
