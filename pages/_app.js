@@ -4,7 +4,6 @@ import "../styles/Home.module.css";
 import "firebase/firestore";
 import "firebase/auth";
 import firebase from "firebase/app";
-
 import { createWrapper } from "next-redux-wrapper";
 const firebaseConfig = {
   apiKey: "AIzaSyCK23GvOrH3SMNEureUlKQasMz8BY-G2E8",

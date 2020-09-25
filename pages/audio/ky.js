@@ -6,6 +6,7 @@ export default function Mau() {
     firebaseConnect("ky");
     const mp3 = useSelector((state) => state.firestoreReducer.ordered.ky);
     console.log(mp3);
+    
   return (
   <div className="container">
       <h1>NÓI VỀ KỶ - THẬP CAN TINH TÚY</h1>
