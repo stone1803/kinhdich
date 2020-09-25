@@ -64,7 +64,7 @@ export default function Navbar({href }) {
         <a
           href="#"
           class="mt-1 block px-2 py-1 font-semibold rounded hover:bg-orange-300 sm:mt-0 sm:ml-2"
-          onClick={() => router.push('/audio/')}
+          onClick={() => router.push('/')}
 
         >
           Liên Hệ
