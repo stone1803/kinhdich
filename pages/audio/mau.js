@@ -1,5 +1,4 @@
 import React from "react";
-import "./music.css";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect, firebaseConnect } from "react-redux-firebase";
 export default function Mau() {
@@ -9,7 +8,7 @@ export default function Mau() {
     console.log(mp3);
   return (
   <div className="container">
-      <h1>NÓI VỀ ẤT - THẬP CAN TINH TÚY</h1>
+      <h1>NÓI VỀ MẬU - THẬP CAN TINH TÚY</h1>
           {mp3 &&
             mp3.map((e, i) => {
               return (

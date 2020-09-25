@@ -1,14 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect, firebaseConnect } from "react-redux-firebase";
-export default function Binh() {
-    useFirestoreConnect("binh"); // sync tips collection from Firestore into redux
-    firebaseConnect("binh");
-    const mp3 = useSelector((state) => state.firestoreReducer.ordered.binh);
+export default function Mau() {
+    useFirestoreConnect("ky"); // sync tips collection from Firestore into redux
+    firebaseConnect("ky");
+    const mp3 = useSelector((state) => state.firestoreReducer.ordered.ky);
     console.log(mp3);
   return (
   <div className="container">
-      <h1>NÓI VỀ BÍNH - THẬP CAN TINH TÚY</h1>
+      <h1>NÓI VỀ KỶ - THẬP CAN TINH TÚY</h1>
           {mp3 &&
             mp3.map((e, i) => {
               return (

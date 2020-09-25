@@ -1,5 +1,4 @@
 import React from "react";
-import "./music.css";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect, firebaseConnect } from "react-redux-firebase";
 export default function At() {
