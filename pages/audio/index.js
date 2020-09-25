@@ -59,7 +59,7 @@ export default function index() {
     const fire = firebase.firestore();
     console.log(url);
     fire
-      .collection("mp3")
+      .collection("canh")
       .doc(file)
       .set({
         stt: file,

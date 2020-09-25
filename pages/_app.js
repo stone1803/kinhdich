@@ -42,7 +42,7 @@ function AuthIsLoaded({ children }) {
   if (!isLoaded(auth))
     return (
       <div className="container text-center">
-        <h1>VẠN PHẬT TÙY TÂM</h1>
+        <h1>VẠN SỰ TÙY TÂM - ĐỨC NĂNG THẮNG SỐ</h1>
       </div>
     );
   return children;
