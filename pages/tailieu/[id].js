@@ -36,7 +36,7 @@ const Blog = (props) => {
         <meta property="og:title" content={props.title} />
         <meta property="og:type" content="website" />
         <meta property="og:description" content={props.des} />
-        <meta property="og:image" content={props.HinhAnh} />
+        <meta property="og:image" content={props.hinhAnh} />
       </Head>
       {/* <h2>{props.title}</h2>
       <p>
