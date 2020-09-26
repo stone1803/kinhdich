@@ -110,7 +110,7 @@ export default function Main() {
                   thích và muốn tìm hiểu về môn này như Tử Vi Kinh Dịch Bát Tự
                   Phong Thủy v.v.
                   <button
-                    onClick={() => router.push("/baiviet/")}
+                    onClick={() => router.push("/tailieu/")}
                     type="button"
                     class="block px-2 py-1 text-gray-500 rounded hover:bg-orange-300 focus:text-white focus:outline-none"
                   >

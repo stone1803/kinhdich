@@ -14,6 +14,8 @@ export default function Home() {
   firebaseConnect("baiviet");
   useFirestoreConnect("raQue"); // sync tips collection from Firestore into redux
   firebaseConnect("raQue");
+  useFirestoreConnect("tailieu"); // sync tips collection from Firestore into redux
+  firebaseConnect("tailieu");
   const que64 = useSelector((state) => state.firestoreReducer.ordered.que64);
   let __protocol = document.location.protocol;
 let __baseUrl = __protocol + "//livechat.fpt.ai/v35/src";
