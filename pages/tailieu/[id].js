@@ -51,7 +51,7 @@ const Blog = (props) => {
       <div class="mx-auto container ">
     <h1>{props.title}</h1>
     <img 
-    className="mt-3"
+    className="mt-3 h-500 w-250"
     src={props.hinhAnh}/>
         <div className="pl-5 bg-orange-200 rounded-lg mt-2 py-5">
           {ReactHtmlParser(props.noidung)}

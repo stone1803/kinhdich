@@ -86,9 +86,9 @@ export default function IndexTaiLieu() {
               data.map((data, index) => {
                 return (
                   <div class="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
-                    <div class="bg-gray-300 h-56 w-full rounded-lg shadow-md bg-cover bg-center">
+                    <div class="bg-gray-300 h-500 w-250 rounded-lg shadow-md bg-cover bg-center">
                       <img
-                        className="rounded-lg shadow-md"
+                        className="rounded-lg shadow-md h-500 w-250"
                         src={data.hinhAnhUrl}
                       />
                     </div>
