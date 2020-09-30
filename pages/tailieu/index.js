@@ -4,6 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect, firebaseConnect } from "react-redux-firebase";
+import Loader from "react-loader-spinner";
 const todosQuery = {
   collection: "tailieu",
   orderBy: ["tenBaiViet"],
@@ -50,17 +51,19 @@ export default function IndexTaiLieu() {
       setData(filteredData);
     }
   };
-  if (que64 === undefined) {
+  if (que64 === undefined && !que64) {
     return <p>Loading</p>;
   }
-  console.log(que64)
+  console.log(que64);
   return (
     <Layout>
       <Head>
         <title>Tổng hợp bài viết đặc sắc về Huyền Hộc</title>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content="Tổng hợp những bài viết về kinh dịch bát tự và nhũng bài hay về huyền học. Giúp ít nhiều trên con đường nghiệm lý" />
-
+        <meta
+          name="description"
+          content="Tổng hợp những bài viết về kinh dịch bát tự và nhũng bài hay về huyền học. Giúp ít nhiều trên con đường nghiệm lý"
+        />
       </Head>
       <section class="blog text-gray-700 body-font">
         <div class="container px-5 py-24 mx-auto">
@@ -70,7 +73,9 @@ export default function IndexTaiLieu() {
               📣 Mến chào !
             </h1>
             <p class="lg:w-1/2 w-full leading-relaxed text-base">
-              Dưới đây tập hợp những bài viết hay về học thuật rất từ nhiều nguồn và cũng chính tác giả viết .Sẽ giúp ít cho bạn rất nhiều trong vấn đề học thuật  🙏{" "}
+              Dưới đây tập hợp những bài viết hay về học thuật rất từ nhiều
+              nguồn và cũng chính tác giả viết .Sẽ giúp ít cho bạn rất nhiều
+              trong vấn đề học thuật 🙏{" "}
             </p>
           </div>
           <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
@@ -98,18 +103,16 @@ export default function IndexTaiLieu() {
                         <div class="category-badge flex-1  h-4 w-4 m rounded-full m-1 bg-purple-100">
                           <div class="h-2 w-2 rounded-full m-1 bg-purple-500 "></div>
                         </div>
-                  
                       </div>
-                      <div class="title-post font-medium">{data.tenBaiViet}</div>
+                      <div class="title-post font-medium">
+                        {data.tenBaiViet}
+                      </div>
 
                       <div class="summary-post text-base text-justify">
                         {data.tomTat.length > 150
                           ? data.tomTat.substr(0, 150) + "..."
                           : data.tomTat}
-                        <Link
-                          href="/tailieu/[id]"
-                          as={"/tailieu/" + data.id}
-                        >
+                        <Link href="/tailieu/[id]" as={"/tailieu/" + data.id}>
                           <button
                             type="button"
                             class="block px-2 py-1 text-gray-500 rounded hover:bg-orange-300 focus:text-white focus:outline-none"
@@ -129,3 +132,18 @@ export default function IndexTaiLieu() {
   );
 }
 
+const LoadingIndicator = () => {
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Loader type="ThreeDots" color="#2BAD60" height="100" width="100" />
+    </div>
+  );
+};

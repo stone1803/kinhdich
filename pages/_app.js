@@ -36,13 +36,12 @@ import {
   ReactReduxFirebaseProvider,
   isLoaded,
 } from "react-redux-firebase";
+import Loading from "./components/config/store/action/loading";
 function AuthIsLoaded({ children }) {
   const auth = useSelector((state) => state.firebaseReducer.auth);
   if (!isLoaded(auth))
     return (
-      <div className="container text-center">
-        <h1>VẠN SỰ TÙY TÂM - ĐỨC NĂNG THẮNG SỐ</h1>
-      </div>
+      <Loading/>
     );
   return children;
 }

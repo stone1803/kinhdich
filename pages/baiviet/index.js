@@ -9,6 +9,8 @@ const todosQuery = {
   orderBy: ["tenBaiViet"],
   // orderBy: 'state' // string notation can also be used
 };
+import { usePromiseTracker } from "react-promise-tracker";
+
 export default function IndexQueDich() {
   useFirestoreConnect(() => [todosQuery]); // sync tips collection from Firestore into redux
   firebaseConnect("baiviet");

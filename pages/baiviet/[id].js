@@ -4,7 +4,8 @@ import firebase from "firebase";
 import Layout from "../layout/mylayout";
 import ReactHtmlParser from "react-html-parser";
 import { useRouter } from "next/router";
-
+import { usePromiseTracker } from "react-promise-tracker";
+import Loading from "../components/config/store/action/loading";
 const firebaseConfig = {
   apiKey: "AIzaSyCK23GvOrH3SMNEureUlKQasMz8BY-G2E8",
   authDomain: "quedichhoamai.firebaseapp.com",
@@ -26,29 +27,20 @@ const fire = firebase;
 const Blog = (props) => {
   const router = useRouter();
   const { asPath, route, query } = useRouter();
-
+  if (!props) {
+    return <Loading />;
+  }
   return (
     <Layout>
       <Head>
         <title>{props.title}</title>
         <meta name="description" content={props.des} />
-        <meta
-          property="og:title"
-          content={props.title}
-        />
+        <meta property="og:title" content={props.title} />
         <meta property="og:type" content="website" />
-        <meta
-          property="og:description"
-          content={props.des}        />
+        <meta property="og:description" content={props.des} />
         <meta property="og:image" content={props.HinhAnh} />
       </Head>
-      {/* <h2>{props.title}</h2>
-      <p>
-        {props.des}
-      </p>
-      <Link href="/">
-        <a>Back</a>
-      </Link> */}
+
       <div class="mx-auto container ">
         <div className="pl-5 bg-orange-200 rounded-lg mt-2 py-5">
           {ReactHtmlParser(props.noidung)}
@@ -85,4 +77,5 @@ export const getServerSideProps = async ({ query }) => {
     },
   };
 };
+
 export default Blog;
