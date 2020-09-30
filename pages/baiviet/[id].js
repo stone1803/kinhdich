@@ -1,11 +1,10 @@
-import Link from "next/link";
 import Head from "next/head";
 import firebase from "firebase";
 import Layout from "../layout/mylayout";
 import ReactHtmlParser from "react-html-parser";
 import { useRouter } from "next/router";
-import { usePromiseTracker } from "react-promise-tracker";
 import Loading from "../components/config/store/action/loading";
+import { useState } from "react";
 const firebaseConfig = {
   apiKey: "AIzaSyCK23GvOrH3SMNEureUlKQasMz8BY-G2E8",
   authDomain: "quedichhoamai.firebaseapp.com",
@@ -27,7 +26,8 @@ const fire = firebase;
 const Blog = (props) => {
   const router = useRouter();
   const { asPath, route, query } = useRouter();
-  if (!props) {
+  const [loading, setLoading] = useState(false);
+  if (loading) {
     return <Loading />;
   }
   return (
@@ -58,17 +58,23 @@ const Blog = (props) => {
 };
 export const getServerSideProps = async ({ query }) => {
   const content = {};
-  await fire
-    .firestore()
-    .collection("baiviet")
-    .doc(query.id)
-    .get()
-    .then((result) => {
-      console.log(result.data);
-      content["tenBaiViet"] = result.data().tenBaiViet;
-      content["tomTat"] = result.data().tomTat;
-      content["noiDung"] = result.data().noiDung;
-    });
+  try {
+    const data = await fire
+      .firestore()
+      .collection("baiviet")
+      .doc(query.id)
+      .get()
+      .then((result) => {
+        console.log(result.data);
+        content["tenBaiViet"] = result.data().tenBaiViet;
+        content["tomTat"] = result.data().tomTat;
+        content["noiDung"] = result.data().noiDung;
+      });
+      setLoading(true)
+  } catch (error) {
+    console.log(error);
+  }
+
   return {
     props: {
       title: content.tenBaiViet,
